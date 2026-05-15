@@ -1,0 +1,1512 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Industry · URMS · United Raw Material Solutions</title>
+<style>
+/* =====================================================
+   URMS · United Raw Material Solutions · style.css
+   Barlow Condensed / Barlow · Orange on White
+   ===================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;500;600;700;800;900&family=Barlow:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap');
+
+:root {
+  --orange:     #F05A22;
+  --orange-dk:  #C8441A;
+  --orange-lt:  #FF7A45;
+  --ink:        #111111;
+  --ink-soft:   #444444;
+  --muted:      #888888;
+  --white:      #FFFFFF;
+  --off-white:  #F8F8F6;
+  --border:     #E5E5E3;
+  --border-dk:  #CCCCCA;
+
+  --cond: 'Barlow Condensed', sans-serif;
+  --body: 'Barlow', sans-serif;
+  --mono: 'JetBrains Mono', monospace;
+
+  --max: 1400px;
+  --side: 56px;
+}
+
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: var(--body);
+  background: var(--white);
+  color: var(--ink);
+  font-weight: 400;
+  line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+::selection { background: var(--orange); color: #fff; }
+
+a { color: inherit; text-decoration: none; }
+
+img { max-width: 100%; display: block; }
+
+/* ======================================== */
+/* IMAGE FILTER — "same family" treatment   */
+/* all site images share this look          */
+/* ======================================== */
+
+.site-img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  filter: grayscale(18%) contrast(1.08) saturate(0.82) brightness(0.97);
+  transition: filter 0.5s ease, transform 0.65s cubic-bezier(0.2,0,0.1,1);
+  display: block;
+}
+
+.img-wrap {
+  position: relative;
+  overflow: hidden;
+}
+
+/* orange cast overlay */
+.img-wrap::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(240, 90, 34, 0.12);
+  pointer-events: none;
+  mix-blend-mode: multiply;
+  transition: background 0.4s ease;
+}
+
+.img-wrap:hover .site-img {
+  filter: grayscale(0%) contrast(1.04) saturate(1) brightness(1);
+  transform: scale(1.04);
+}
+
+.img-wrap:hover::after {
+  background: rgba(240, 90, 34, 0.05);
+}
+
+/* no hover on hero slides */
+.hero-slide .img-wrap:hover .site-img { transform: none; }
+
+/* ======================================== */
+/* TICKER                                   */
+/* ======================================== */
+
+.ticker {
+  background: var(--ink);
+  color: #fff;
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 10px 0;
+  overflow: hidden;
+  position: relative;
+  z-index: 100;
+}
+
+.ticker-track {
+  display: flex;
+  gap: 48px;
+  white-space: nowrap;
+  animation: ticker-scroll 55s linear infinite;
+  width: max-content;
+}
+
+.ticker-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 14px;
+  color: rgba(255,255,255,0.75);
+}
+
+.ticker-item .label { color: var(--orange); font-weight: 500; }
+
+.ticker-item .sep {
+  width: 3px; height: 3px;
+  border-radius: 50%;
+  background: var(--orange);
+  flex-shrink: 0;
+}
+
+@keyframes ticker-scroll {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
+/* ======================================== */
+/* NAV                                      */
+/* ======================================== */
+
+.site-nav {
+  position: sticky;
+  top: 0;
+  z-index: 99;
+  background: rgba(255,255,255,0.95);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-bottom: 1px solid var(--border);
+}
+
+.nav-inner {
+  max-width: var(--max);
+  margin: 0 auto;
+  padding: 0 var(--side);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 72px;
+}
+
+.nav-logo {
+  display: flex;
+  align-items: center;
+  gap: 0;
+}
+
+.nav-logo .wordmark {
+  font-family: var(--cond);
+  font-size: 28px;
+  font-weight: 900;
+  letter-spacing: 0.04em;
+  color: var(--orange);
+  text-transform: uppercase;
+  line-height: 1;
+}
+
+.nav-links {
+  display: flex;
+  list-style: none;
+  gap: 36px;
+}
+
+.nav-links a {
+  font-family: var(--body);
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 0.03em;
+  color: var(--ink);
+  text-transform: uppercase;
+  position: relative;
+  padding-bottom: 3px;
+  transition: color 0.25s;
+}
+
+.nav-links a::after {
+  content: '';
+  position: absolute;
+  left: 0; bottom: 0;
+  width: 0; height: 2px;
+  background: var(--orange);
+  transition: width 0.3s ease;
+}
+
+.nav-links a:hover,
+.nav-links a.active { color: var(--orange); }
+
+.nav-links a:hover::after,
+.nav-links a.active::after { width: 100%; }
+
+.nav-cta {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.btn-orange {
+  background: var(--orange);
+  color: #fff;
+  padding: 11px 24px;
+  font-family: var(--body);
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  transition: background 0.25s;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.btn-orange:hover { background: var(--orange-dk); }
+
+.btn-outline {
+  border: 2px solid var(--ink);
+  color: var(--ink);
+  padding: 10px 24px;
+  font-family: var(--body);
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  transition: all 0.25s;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.btn-outline:hover { border-color: var(--orange); color: var(--orange); }
+
+/* ======================================== */
+/* HERO CAROUSEL                            */
+/* ======================================== */
+
+.hero-carousel {
+  position: relative;
+  width: 100%;
+  height: 90vh;
+  min-height: 560px;
+  max-height: 820px;
+  overflow: hidden;
+  background: var(--ink);
+}
+
+.hero-slide {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transition: opacity 1.2s ease;
+}
+
+.hero-slide.active { opacity: 1; }
+
+.hero-slide .img-wrap {
+  position: absolute;
+  inset: 0;
+}
+
+.hero-slide .img-wrap::after {
+  background: rgba(10,10,10,0.45);
+  mix-blend-mode: normal;
+}
+
+.hero-slide .img-wrap:hover .site-img {
+  transform: none;
+  filter: grayscale(18%) contrast(1.08) saturate(0.82) brightness(0.97);
+}
+
+.hero-content {
+  position: absolute;
+  inset: 0;
+  z-index: 4;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 0 var(--side) 80px;
+  max-width: var(--max);
+  margin: 0 auto;
+  left: 0; right: 0;
+}
+
+.hero-eyebrow {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--orange);
+  margin-bottom: 16px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.hero-eyebrow::before {
+  content: '';
+  width: 28px; height: 2px;
+  background: var(--orange);
+}
+
+.hero-title {
+  font-family: var(--cond);
+  font-size: clamp(60px, 9vw, 130px);
+  font-weight: 800;
+  line-height: 0.9;
+  letter-spacing: -0.01em;
+  color: #fff;
+  text-transform: uppercase;
+  margin-bottom: 24px;
+}
+
+.hero-title span { color: var(--orange); }
+
+.hero-sub {
+  font-family: var(--body);
+  font-size: 22px;
+  color: rgba(255,255,255,0.82);
+  max-width: 520px;
+  line-height: 1.55;
+  margin-bottom: 36px;
+}
+
+.hero-actions {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+}
+
+/* carousel controls */
+.carousel-dots {
+  position: absolute;
+  bottom: 32px;
+  right: var(--side);
+  z-index: 5;
+  display: flex;
+  gap: 10px;
+}
+
+.carousel-dot {
+  width: 8px; height: 8px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.4);
+  cursor: pointer;
+  border: none;
+  transition: background 0.3s, transform 0.3s;
+  padding: 0;
+}
+
+.carousel-dot.active {
+  background: var(--orange);
+  transform: scale(1.3);
+}
+
+/* ======================================== */
+/* PAGE HERO (inner pages)                  */
+/* ======================================== */
+
+.page-hero {
+  position: relative;
+  height: 440px;
+  background: var(--ink);
+  overflow: hidden;
+}
+
+.page-hero .img-wrap { position: absolute; inset: 0; }
+
+.page-hero .img-wrap::after {
+  background: rgba(10,10,10,0.55);
+  mix-blend-mode: normal;
+}
+
+.page-hero-content {
+  position: absolute;
+  inset: 0;
+  z-index: 4;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 0 var(--side) 64px;
+  max-width: var(--max);
+  margin: 0 auto;
+  left: 0; right: 0;
+}
+
+.page-hero-eyebrow {
+  font-family: var(--cond);
+  font-size: clamp(18px, 2vw, 26px);
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--orange);
+  margin-bottom: 12px;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  line-height: 1;
+}
+
+.page-hero-eyebrow::before {
+  content: '';
+  width: 80px; height: 2px;
+  background: var(--orange);
+  flex-shrink: 0;
+}
+
+.page-hero h1 {
+  font-family: var(--cond);
+  font-size: clamp(52px, 7vw, 96px);
+  font-weight: 800;
+  line-height: 0.92;
+  letter-spacing: -0.01em;
+  color: #fff;
+  text-transform: uppercase;
+}
+
+.page-hero h1 span { color: var(--orange); }
+
+/* ======================================== */
+/* SECTION HEADINGS                         */
+/* ======================================== */
+
+.section-eyebrow {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--orange);
+  margin-bottom: 16px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.section-eyebrow::before {
+  content: '';
+  width: 80px; height: 2px;
+  background: var(--orange);
+  flex-shrink: 0;
+}
+
+.section-title {
+  font-family: var(--cond);
+  font-size: clamp(40px, 5vw, 72px);
+  font-weight: 800;
+  line-height: 0.95;
+  letter-spacing: -0.01em;
+  text-transform: uppercase;
+  margin-bottom: 8px;
+}
+
+.section-title span,
+.section-title em { color: var(--orange); font-style: normal; }
+
+.orange-rule {
+  width: 120px; height: 3px;
+  background: var(--orange);
+  margin: 20px 0 32px;
+}
+
+/* ======================================== */
+/* STATS BAND                               */
+/* ======================================== */
+
+.stats-band {
+  background: var(--ink);
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+}
+
+.stat-cell {
+  padding: 40px 36px;
+  border-right: 1px solid rgba(255,255,255,0.08);
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.stat-cell:last-child { border-right: none; }
+
+.stat-cell .num {
+  font-family: var(--cond);
+  font-size: 56px;
+  font-weight: 800;
+  line-height: 1;
+  color: var(--orange);
+  letter-spacing: -0.02em;
+}
+
+.stat-cell .label {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.6);
+}
+
+.stat-cell .sub {
+  font-size: 13px;
+  color: rgba(255,255,255,0.4);
+  margin-top: 2px;
+}
+
+/* ======================================== */
+/* ABOUT STRIP (homepage teaser)            */
+/* ======================================== */
+
+.about-strip {
+  padding: 100px var(--side);
+  max-width: var(--max);
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  align-items: center;
+}
+
+.about-strip .text-col .body-text {
+  font-size: 17px;
+  line-height: 1.65;
+  color: var(--ink-soft);
+  margin-bottom: 20px;
+}
+
+.about-strip .text-col .body-text.lead {
+  font-size: 20px;
+  color: var(--ink);
+  font-weight: 500;
+}
+
+.about-strip .img-col {
+  aspect-ratio: 4/3;
+}
+
+/* ======================================== */
+/* INDUSTRY GRID                            */
+/* ======================================== */
+
+.industries-section {
+  background: var(--off-white);
+  padding: 100px var(--side);
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+}
+
+.industries-inner {
+  max-width: var(--max);
+  margin: 0 auto;
+}
+
+.industries-header {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  margin-bottom: 56px;
+  align-items: end;
+}
+
+.industries-header .intro-text {
+  font-size: 17px;
+  line-height: 1.65;
+  color: var(--ink-soft);
+}
+
+.industry-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2px;
+}
+
+.industry-card {
+  position: relative;
+  overflow: hidden;
+  aspect-ratio: 1/1;
+  cursor: pointer;
+  background: var(--ink);
+  display: block;
+}
+
+.industry-card .img-wrap {
+  position: absolute;
+  inset: 0;
+}
+
+.industry-card .img-wrap::after {
+  background: rgba(10,10,10,0.52);
+  mix-blend-mode: normal;
+}
+
+.industry-card .card-content {
+  position: absolute;
+  inset: 0;
+  z-index: 5;
+  padding: 28px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  color: #fff;
+  transition: padding 0.4s ease;
+}
+
+.industry-card:hover .card-content {
+  padding: 28px 28px 36px;
+}
+
+.industry-card .card-num {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  color: var(--orange);
+  text-transform: uppercase;
+}
+
+.industry-card .card-bottom {}
+
+.industry-card h3 {
+  font-family: var(--cond);
+  font-size: 36px;
+  font-weight: 800;
+  line-height: 1;
+  text-transform: uppercase;
+  letter-spacing: 0.01em;
+  margin-bottom: 6px;
+}
+
+.industry-card .orange-underline {
+  width: 0;
+  height: 2px;
+  background: var(--orange);
+  transition: width 0.4s ease;
+  margin-bottom: 10px;
+}
+
+.industry-card:hover .orange-underline { width: 40px; }
+
+.industry-card p {
+  font-size: 14px;
+  color: rgba(255,255,255,0.82);
+  line-height: 1.5;
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.4s ease;
+}
+
+.industry-card:hover p { max-height: 80px; }
+
+/* ======================================== */
+/* SERVICES OVERVIEW                        */
+/* ======================================== */
+
+.services-overview {
+  padding: 100px var(--side);
+  max-width: var(--max);
+  margin: 0 auto;
+}
+
+.services-overview-header {
+  display: grid;
+  grid-template-columns: 1fr 1.4fr;
+  gap: 80px;
+  margin-bottom: 64px;
+  align-items: end;
+}
+
+.services-overview-header .intro-text {
+  font-size: 17px;
+  line-height: 1.65;
+  color: var(--ink-soft);
+}
+
+.services-list {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2px;
+}
+
+.service-block {
+  padding: 48px 40px;
+  background: var(--off-white);
+  border-top: 3px solid transparent;
+  transition: border-color 0.3s, background 0.3s;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.service-block:hover {
+  border-top-color: var(--orange);
+  background: #fff;
+}
+
+.service-block .svc-num {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  color: var(--orange);
+  text-transform: uppercase;
+}
+
+.service-block h3 {
+  font-family: var(--cond);
+  font-size: 32px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.01em;
+  line-height: 1;
+}
+
+.service-block p {
+  font-size: 15px;
+  color: var(--ink-soft);
+  line-height: 1.65;
+}
+
+.service-block .learn-more {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--orange);
+  margin-top: auto;
+  transition: gap 0.3s;
+}
+
+.service-block:hover .learn-more { gap: 14px; }
+
+/* ======================================== */
+/* QUOTE BAND                               */
+/* ======================================== */
+
+.quote-band {
+  background: var(--orange);
+  color: #fff;
+  padding: 60px var(--side);
+}
+
+.quote-band .inner {
+  max-width: var(--max);
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 60px;
+  align-items: center;
+}
+
+.quote-band blockquote {
+  font-family: var(--cond);
+  font-size: clamp(28px, 3.5vw, 44px);
+  font-weight: 700;
+  line-height: 1.1;
+  text-transform: uppercase;
+  letter-spacing: 0.01em;
+}
+
+.quote-band .quote-attr {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.75);
+  white-space: nowrap;
+}
+
+/* ======================================== */
+/* SERVICES DETAIL (services page)          */
+/* ======================================== */
+
+.service-detail {
+  padding: 100px var(--side);
+  border-bottom: 1px solid var(--border);
+}
+
+.service-detail-inner {
+  max-width: var(--max);
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  align-items: center;
+}
+
+.service-detail-inner.reverse {
+  direction: rtl;
+}
+.service-detail-inner.reverse > * {
+  direction: ltr;
+}
+
+.service-detail-inner .img-col {
+  aspect-ratio: 4/3;
+}
+
+.service-detail-inner .text-col p {
+  font-size: 16px;
+  line-height: 1.7;
+  color: var(--ink-soft);
+  margin-bottom: 16px;
+}
+
+/* ======================================== */
+/* INDUSTRIES DETAIL (industry page)        */
+/* ======================================== */
+
+.industry-detail-grid {
+  padding: 100px var(--side);
+  max-width: var(--max);
+  margin: 0 auto;
+}
+
+.industry-detail-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2px;
+  margin-bottom: 2px;
+}
+
+.industry-detail-img {
+  min-height: 320px;
+  overflow: hidden;
+  position: relative;
+}
+.industry-detail-img .site-img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+.industry-detail-row {
+  align-items: stretch;
+}
+
+.industry-detail-text {
+  padding: 56px 48px;
+  background: var(--off-white);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.industry-detail-text .ind-num {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.16em;
+  color: var(--orange);
+  text-transform: uppercase;
+  margin-bottom: 20px;
+}
+
+.industry-detail-text h2 {
+  font-family: var(--cond);
+  font-size: 52px;
+  font-weight: 800;
+  text-transform: uppercase;
+  line-height: 0.95;
+  margin-bottom: 20px;
+  letter-spacing: 0.01em;
+}
+
+.industry-detail-text p {
+  font-size: 16px;
+  line-height: 1.65;
+  color: var(--ink-soft);
+  margin-bottom: 12px;
+}
+
+.industry-tag-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 20px;
+}
+
+.industry-tag {
+  background: var(--white);
+  border: 1px solid var(--border-dk);
+  padding: 5px 12px;
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+}
+
+/* ======================================== */
+/* NEWS CARDS                               */
+/* ======================================== */
+
+.news-section {
+  padding: 100px var(--side);
+  max-width: var(--max);
+  margin: 0 auto;
+}
+
+.news-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 32px;
+  margin-top: 56px;
+}
+
+.news-card {
+  display: flex;
+  flex-direction: column;
+  cursor: pointer;
+}
+
+.news-card .card-img {
+  aspect-ratio: 16/9;
+  margin-bottom: 24px;
+}
+
+.news-card .date {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  color: var(--orange);
+  text-transform: uppercase;
+  margin-bottom: 10px;
+}
+
+.news-card h3 {
+  font-family: var(--cond);
+  font-size: 26px;
+  font-weight: 700;
+  text-transform: uppercase;
+  line-height: 1.05;
+  letter-spacing: 0.01em;
+  margin-bottom: 12px;
+  transition: color 0.3s;
+}
+
+.news-card:hover h3 { color: var(--orange); }
+
+.news-card p {
+  font-size: 14px;
+  color: var(--ink-soft);
+  line-height: 1.6;
+  flex: 1;
+}
+
+.news-card .read-more {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 16px;
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--orange);
+  transition: gap 0.3s;
+}
+
+.news-card:hover .read-more { gap: 14px; }
+
+/* ======================================== */
+/* CONTACT                                  */
+/* ======================================== */
+
+.contact-section {
+  padding: 100px var(--side);
+  max-width: var(--max);
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+}
+
+.contact-info .info-block {
+  margin-bottom: 36px;
+}
+
+.contact-info .info-label {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--orange);
+  margin-bottom: 8px;
+}
+
+.contact-info .info-value {
+  font-size: 16px;
+  color: var(--ink-soft);
+  line-height: 1.6;
+}
+
+.contact-info .info-value a:hover { color: var(--orange); }
+
+.contact-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.form-group label {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+  border: 1px solid var(--border-dk);
+  padding: 14px 16px;
+  font-family: var(--body);
+  font-size: 15px;
+  color: var(--ink);
+  background: #fff;
+  outline: none;
+  transition: border-color 0.25s;
+  border-radius: 0;
+  -webkit-appearance: none;
+  width: 100%;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+  border-color: var(--orange);
+}
+
+.form-group textarea { height: 140px; resize: vertical; }
+
+.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+
+/* ======================================== */
+/* CTA BAND                                 */
+/* ======================================== */
+
+.cta-band {
+  background: var(--ink);
+  padding: 100px var(--side);
+  position: relative;
+  overflow: hidden;
+}
+
+.cta-band::before {
+  content: '';
+  position: absolute;
+  width: 600px; height: 600px;
+  top: -200px; right: -100px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(240,90,34,0.2) 0%, transparent 65%);
+  pointer-events: none;
+}
+
+.cta-inner {
+  max-width: var(--max);
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 80px;
+  align-items: center;
+  position: relative;
+  z-index: 2;
+}
+
+.cta-text h2 {
+  font-family: var(--cond);
+  font-size: clamp(48px, 6vw, 84px);
+  font-weight: 800;
+  line-height: 0.95;
+  color: #fff;
+  text-transform: uppercase;
+  letter-spacing: -0.01em;
+  margin-bottom: 20px;
+}
+
+.cta-text h2 span { color: var(--orange); }
+
+.cta-text p {
+  font-size: 17px;
+  color: rgba(255,255,255,0.65);
+  max-width: 480px;
+  line-height: 1.6;
+}
+
+.cta-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  align-items: flex-start;
+  flex-shrink: 0;
+}
+
+/* ======================================== */
+/* FOOTER                                   */
+/* ======================================== */
+
+.site-footer {
+  background: #0A0A0A;
+  color: #fff;
+  padding: 72px var(--side) 36px;
+}
+
+.footer-top {
+  max-width: var(--max);
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1.6fr repeat(3, 1fr);
+  gap: 48px;
+  padding-bottom: 56px;
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+}
+
+.footer-brand .brand-logo {
+  font-family: var(--cond);
+  font-size: 36px;
+  font-weight: 900;
+  color: var(--orange);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  margin-bottom: 16px;
+}
+
+.footer-brand p {
+  font-size: 14px;
+  color: rgba(255,255,255,0.5);
+  line-height: 1.7;
+  max-width: 300px;
+}
+
+.footer-col h4 {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--orange);
+  margin-bottom: 20px;
+  font-weight: 500;
+}
+
+.footer-col ul {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 11px;
+}
+
+.footer-col a {
+  font-size: 14px;
+  color: rgba(255,255,255,0.6);
+  transition: color 0.25s;
+}
+
+.footer-col a:hover { color: var(--orange); }
+
+.footer-bottom {
+  max-width: var(--max);
+  margin: 0 auto;
+  padding-top: 32px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.3);
+}
+
+.footer-bottom .group {
+  display: flex;
+  gap: 24px;
+}
+
+.footer-bottom a:hover { color: var(--orange); }
+
+/* ======================================== */
+/* SCROLL REVEAL                            */
+/* ======================================== */
+
+.reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.9s ease, transform 0.9s cubic-bezier(0.2,0,0.1,1);
+}
+
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.reveal.d1 { transition-delay: 0.1s; }
+.reveal.d2 { transition-delay: 0.2s; }
+.reveal.d3 { transition-delay: 0.3s; }
+.reveal.d4 { transition-delay: 0.4s; }
+
+/* ======================================== */
+/* RESPONSIVE                               */
+/* ======================================== */
+
+@media (max-width: 1024px) {
+  :root { --side: 32px; }
+  .nav-links { gap: 24px; }
+  .stats-band { grid-template-columns: repeat(2, 1fr); }
+  .industries-header { grid-template-columns: 1fr; gap: 24px; }
+  .services-overview-header { grid-template-columns: 1fr; gap: 24px; }
+  .industry-detail-row { grid-template-columns: 1fr; }
+  .services-list { grid-template-columns: 1fr; }
+  .footer-top { grid-template-columns: 1fr 1fr; }
+  .cta-inner { grid-template-columns: 1fr; gap: 40px; }
+}
+
+@media (max-width: 768px) {
+  :root { --side: 20px; }
+  .nav-links { display: none; }
+  .industry-grid { grid-template-columns: repeat(2, 1fr); }
+  .news-grid { grid-template-columns: 1fr; }
+  .contact-section { grid-template-columns: 1fr; }
+  .about-strip { grid-template-columns: 1fr; }
+  .service-detail-inner { grid-template-columns: 1fr; }
+  .service-detail-inner.reverse { direction: ltr; }
+  .stats-band { grid-template-columns: repeat(2, 1fr); }
+  .footer-top { grid-template-columns: 1fr; }
+  .quote-band .inner { grid-template-columns: 1fr; gap: 24px; }
+  .hero-carousel { height: 70vh; }
+  .form-row { grid-template-columns: 1fr; }
+  .footer-bottom { flex-direction: column; gap: 12px; align-items: flex-start; }
+}
+
+@media (max-width: 480px) {
+  .industry-grid { grid-template-columns: 1fr; }
+}
+
+/* ======================================== */
+/* ICON SVG helper                          */
+/* ======================================== */
+
+.arrow-right {
+  display: inline-block;
+  width: 14px; height: 14px;
+  position: relative;
+  top: 1px;
+}
+
+</style>
+</head>
+<body>
+
+<!-- TICKER -->
+<div class="ticker" aria-hidden="true">
+  <div class="ticker-track">
+    <span class="ticker-item"><span class="label">Petrochemicals</span><span>Naphtha · Olefins · Aromatics</span><span class="sep"></span></span>
+    <span class="ticker-item"><span class="label">Plastics</span><span>PE · PP · PVC · PET · ABS · GPPS · HIPS · EPS</span><span class="sep"></span></span>
+    <span class="ticker-item"><span class="label">Textiles</span><span>Fiber · Yarn · Fabric</span><span class="sep"></span></span>
+    <span class="ticker-item"><span class="label">Composites</span><span>Carbon Fiber · Glass Fiber · Resins</span><span class="sep"></span></span>
+    <span class="ticker-item"><span class="label">Projects</span><span>Cross-Border Sourcing · Commodity Programs</span><span class="sep"></span></span>
+    <span class="ticker-item"><span class="label">Energy</span><span>Commodities &amp; Industrial Feedstocks</span><span class="sep"></span></span>
+    <span class="ticker-item"><span class="label">Petrochemicals</span><span>Naphtha · Olefins · Aromatics</span><span class="sep"></span></span>
+    <span class="ticker-item"><span class="label">Plastics</span><span>PE · PP · PVC · PET · ABS · GPPS · HIPS · EPS</span><span class="sep"></span></span>
+    <span class="ticker-item"><span class="label">Textiles</span><span>Fiber · Yarn · Fabric</span><span class="sep"></span></span>
+    <span class="ticker-item"><span class="label">Composites</span><span>Carbon Fiber · Glass Fiber · Resins</span><span class="sep"></span></span>
+    <span class="ticker-item"><span class="label">Projects</span><span>Cross-Border Sourcing · Commodity Programs</span><span class="sep"></span></span>
+    <span class="ticker-item"><span class="label">Energy</span><span>Commodities &amp; Industrial Feedstocks</span><span class="sep"></span></span>
+  </div>
+</div>
+
+<!-- NAV -->
+<nav class="site-nav">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo"><span class="wordmark">URMS</span></a>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="about.html">About Us</a></li>
+      <li><a href="services.html">Services</a></li>
+      <li><a href="industries.html" class="active">Industry</a></li>
+      <li><a href="news.html">News</a></li>
+      <li><a href="contact.html">Contact Us</a></li>
+    </ul>
+    <div class="nav-cta"><a href="contact.html" class="btn-orange">Get In Touch &rarr;</a></div>
+  </div>
+</nav>
+
+<!-- PAGE HERO -->
+<section class="page-hero">
+  <div class="img-wrap">
+    <img class="site-img" src="https://images.unsplash.com/photo-1536532184021-da5392b55da1?fit=crop&w=1920&q=80" alt="Industries" />
+  </div>
+  <div class="page-hero-content">
+    <div class="page-hero-eyebrow">Industry Coverage</div>
+    <h1>Six Sectors.<br/><span>One Platform</span></h1>
+  </div>
+</section>
+
+<!-- INTRO -->
+<section style="padding: 80px var(--side); border-bottom: 1px solid var(--border);">
+  <div style="max-width: var(--max); margin: 0 auto; display: grid; grid-template-columns: 1fr 1.4fr; gap: 80px; align-items: center;">
+    <div class="reveal">
+      <div class="section-eyebrow">Industries We Serve</div>
+      <h2 class="section-title">Diversified.<br/><span>Global. </span>Integrated</h2>
+      <div class="orange-rule"></div>
+    </div>
+    <div class="reveal d1">
+      <p style="font-size: 22px; color: var(--ink); font-weight: 500; line-height: 1.5; margin-bottom: 16px;">"Our business is to facilitate the access of upstream to downstream raw materials for each of our customers in every industry around the globe."</p>
+      <p style="font-size: 20px; color: var(--ink-soft); line-height: 1.65;">URMS manages a diversified portfolio across six core sectors. Every shipment qualified, scheduled and tracked end to end with full chain-of-custody transparency.</p>
+    </div>
+  </div>
+</section>
+
+<!-- INDUSTRY DETAIL GRID -->
+<div class="industry-detail-grid" style="padding-top: 0; padding-bottom: 0;">
+
+  <!-- 01: Petrochemicals -->
+  <div class="industry-detail-row" id="petrochemicals">
+    <div class="industry-detail-img img-wrap reveal">
+      <img class="site-img" src="https://images.unsplash.com/photo-1611273426858-450d8e3c9fce?fit=crop&w=900&q=80" alt="Petrochemicals" />
+    </div>
+    <div class="industry-detail-text reveal d1">
+      <div class="ind-num">Industry 01</div>
+      <h2>Petro<br/>chemicals</h2>
+      <div class="orange-rule"></div>
+      <p>Naphtha, olefins, aromatics and key intermediate chemicals sourced from refineries and cracking operations worldwide. URMS maintains strong relationships with producers across Asia, the Middle East and Europe, ensuring competitive pricing and reliable supply for industrial buyers in every market.</p>
+      <p>Our petrochemical sourcing covers the full upstream to downstream chain, from feedstock procurement through to finished intermediate chemicals for industrial processing.</p>
+      <div class="industry-tag-list">
+        <span class="industry-tag">Naphtha</span>
+        <span class="industry-tag">Ethylene</span>
+        <span class="industry-tag">Propylene</span>
+        <span class="industry-tag">Benzene</span>
+        <span class="industry-tag">Toluene</span>
+        <span class="industry-tag">Xylene</span>
+        <span class="industry-tag">Methanol</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- 02: Plastics -->
+  <div class="industry-detail-row" id="plastics" style="margin-top: 2px;">
+    <div class="industry-detail-text reveal">
+      <div class="ind-num">Industry 02</div>
+      <h2>Plastics</h2>
+      <div class="orange-rule"></div>
+      <p>One of Asia's largest plastics raw material suppliers, URMS distributes and wholesales a comprehensive range of polymer materials. Virgin and recycled grades, in commercial volumes from container loads through to vessel quantities.</p>
+      <p>As the distribution and wholesale platform for Formosa Group as well as other international well-known brands, we export significant tonnage monthly through our market channels worldwide.</p>
+      <div class="industry-tag-list">
+        <span class="industry-tag">PE / HDPE / LDPE</span>
+        <span class="industry-tag">PP Homopolymer</span>
+        <span class="industry-tag">PP Copolymer</span>
+        <span class="industry-tag">PVC</span>
+        <span class="industry-tag">PET</span>
+        <span class="industry-tag">ABS</span>
+        <span class="industry-tag">GPPS</span>
+        <span class="industry-tag">HIPS</span>
+        <span class="industry-tag">EPS</span>
+        <span class="industry-tag">EVA</span>
+      </div>
+    </div>
+    <div class="industry-detail-img img-wrap reveal d1">
+      <img class="site-img" src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?fit=crop&w=900&q=80" alt="Plastic polymer pellets" />
+    </div>
+  </div>
+
+  <!-- 03: Textiles -->
+  <div class="industry-detail-row" id="textiles" style="margin-top: 2px;">
+    <div class="industry-detail-img img-wrap reveal">
+      <img class="site-img" src="https://images.unsplash.com/photo-1558618047-3c8c76ca7d13?fit=crop&w=900&q=80" alt="Textile manufacturing" />
+    </div>
+    <div class="industry-detail-text reveal d1">
+      <div class="ind-num">Industry 03</div>
+      <h2>Textiles</h2>
+      <div class="orange-rule"></div>
+      <p>Fiber, yarn and fabric for spinning, weaving and finishing operations across Asia and beyond. URMS sources textile raw materials from certified producers and connects them with industrial buyers across our global network.</p>
+      <p>Our textile sourcing covers a full range of synthetic and natural fiber feedstocks, with growing capability in recycled and sustainable textile raw materials for clients with ESG reporting requirements.</p>
+      <div class="industry-tag-list">
+        <span class="industry-tag">Polyester Staple Fiber</span>
+        <span class="industry-tag">Filament Yarn</span>
+        <span class="industry-tag">Cotton Yarn</span>
+        <span class="industry-tag">Nylon</span>
+        <span class="industry-tag">Recycled Feedstock</span>
+        <span class="industry-tag">Specialty Blends</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- 04: Composites -->
+  <div class="industry-detail-row" id="composites" style="margin-top: 2px;">
+    <div class="industry-detail-text reveal">
+      <div class="ind-num">Industry 04</div>
+      <h2>Composites</h2>
+      <div class="orange-rule"></div>
+      <p>Carbon fiber, glass fiber, advanced resins and reinforcement materials for high-performance composite manufacturing. URMS sources composite materials for aerospace, automotive, marine and construction applications.</p>
+      <p>With technical knowhow in composite material specifications, our team can evaluate and qualify materials to the exact requirements of each client's manufacturing process and end-use application.</p>
+      <div class="industry-tag-list">
+        <span class="industry-tag">Carbon Fiber</span>
+        <span class="industry-tag">Glass Fiber</span>
+        <span class="industry-tag">Epoxy Resin</span>
+        <span class="industry-tag">Polyester Resin</span>
+        <span class="industry-tag">Woven Fabrics</span>
+        <span class="industry-tag">Prepreg</span>
+      </div>
+    </div>
+    <div class="industry-detail-img img-wrap reveal d1">
+      <img class="site-img" src="https://images.unsplash.com/photo-1485827404703-89b55fcc595e?fit=crop&w=900&q=80" alt="Composite materials" />
+    </div>
+  </div>
+
+  <!-- 05: Projects -->
+  <div class="industry-detail-row" id="projects" style="margin-top: 2px;">
+    <div class="industry-detail-img img-wrap reveal">
+      <img class="site-img" src="https://images.unsplash.com/photo-1557804506-669a67965ba0?fit=crop&w=900&q=80" alt="Global projects" />
+    </div>
+    <div class="industry-detail-text reveal d1">
+      <div class="ind-num">Industry 05</div>
+      <h2>Projects</h2>
+      <div class="orange-rule"></div>
+      <p>Cross-border raw material sourcing, structured supply contracts and bespoke commodity programs designed for complex industrial project requirements. URMS manages multi-origin, multi-commodity procurement for large scale manufacturing and infrastructure projects.</p>
+      <p>Our project sourcing capability draws on our full four-pillar service stack: sourcing, marketing intelligence, logistics coordination and trade finance structuring, all managed under one platform.</p>
+      <div class="industry-tag-list">
+        <span class="industry-tag">Multi-Origin Procurement</span>
+        <span class="industry-tag">Supply Contracts</span>
+        <span class="industry-tag">Bespoke Programs</span>
+        <span class="industry-tag">Project Finance</span>
+        <span class="industry-tag">Long-term Supply</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- 06: Energy -->
+  <div class="industry-detail-row" id="energy" style="margin-top: 2px; margin-bottom: 100px;">
+    <div class="industry-detail-text reveal">
+      <div class="ind-num">Industry 06</div>
+      <h2>Energy</h2>
+      <div class="orange-rule"></div>
+      <p>Energy commodities and feedstocks supporting industrial buyers across emerging and mature markets worldwide. URMS operates in both conventional energy commodities and the transitional energy raw materials supporting cleaner industrial processes.</p>
+      <p>Our energy commodity capability is underpinned by the same integrated supply chain platform that serves our petrochemical and plastics clients, providing consistency of service across your entire procurement portfolio.</p>
+      <div class="industry-tag-list">
+        <span class="industry-tag">Coal</span>
+        <span class="industry-tag">Petroleum Products</span>
+        <span class="industry-tag">LNG</span>
+        <span class="industry-tag">Industrial Gases</span>
+        <span class="industry-tag">Renewable Feedstocks</span>
+      </div>
+    </div>
+    <div class="industry-detail-img img-wrap reveal d1">
+      <img class="site-img" src="https://images.unsplash.com/photo-1473341304170-971dccb5ac1e?fit=crop&w=900&q=80" alt="Energy" />
+    </div>
+  </div>
+
+</div>
+
+<!-- CTA BAND -->
+<section class="cta-band">
+  <div class="cta-inner">
+    <div class="cta-text reveal">
+      <h2>Which Industry<br/><span>Can We Help?</span></h2>
+      <p>Speak to our team about your specific industry requirements. We are ready to provide a tailored sourcing solution.</p>
+    </div>
+    <div class="cta-actions reveal d2">
+      <a href="contact.html" class="btn-orange" style="font-size:15px;padding:16px 32px;">Contact Us &rarr;</a>
+      <a href="services.html" class="btn-outline" style="color:#fff;border-color:rgba(255,255,255,0.35);font-size:15px;padding:16px 32px;">Our Services</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="site-footer">
+  <div class="footer-top">
+    <div class="footer-brand"><div class="brand-logo">URMS</div><p>United Raw Material Solutions Inc. A leading global supply chain platform managing a diversified portfolio of raw material and products across the Petrochemical, Plastic, Textile and Composite Industry.</p></div>
+    <div class="footer-col"><h4>Industries</h4><ul><li><a href="#petrochemicals">Petrochemicals</a></li><li><a href="#plastics">Plastics</a></li><li><a href="#textiles">Textiles</a></li><li><a href="#composites">Composites</a></li><li><a href="#projects">Projects</a></li><li><a href="#energy">Energy</a></li></ul></div>
+    <div class="footer-col"><h4>Services</h4><ul><li><a href="services.html">Sourcing</a></li><li><a href="services.html">Marketing</a></li><li><a href="services.html">Logistics &amp; Distribution</a></li><li><a href="services.html">Trade Finance</a></li></ul></div>
+    <div class="footer-col"><h4>Company</h4><ul><li><a href="about.html">About Us</a></li><li><a href="news.html">News</a></li><li><a href="contact.html">Contact Us</a></li></ul></div>
+  </div>
+  <div class="footer-bottom">
+    <div>&copy; 2026 United Raw Material Solutions Inc. All rights reserved.</div>
+    <div class="group"><a href="#">Privacy Policy</a><a href="#">Terms of Use</a></div>
+  </div>
+</footer>
+
+<script>
+const obs = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+}, { threshold: 0.08, rootMargin: '0px 0px -60px 0px' });
+document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+</script>
+</body>
+</html>
