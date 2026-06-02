@@ -13,9 +13,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;500;600;700;800;900&family=Barlow:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap');
 
 :root {
-  --orange:     #F05A22;
-  --orange-dk:  #C8441A;
-  --orange-lt:  #FF7A45;
+  --orange:     #FF5102;
+  --orange-dk:  #CC4100;
+  --orange-lt:  #FF7333;
   --ink:        #111111;
   --ink-soft:   #444444;
   --muted:      #888888;
@@ -60,6 +60,7 @@ img { max-width: 100%; display: block; }
 .site-img {
   width: 100%; height: 100%;
   object-fit: cover;
+  filter: grayscale(18%) contrast(1.08) saturate(0.82) brightness(0.97);
   transition: filter 0.5s ease, transform 0.65s cubic-bezier(0.2,0,0.1,1);
   display: block;
 }
@@ -69,8 +70,24 @@ img { max-width: 100%; display: block; }
   overflow: hidden;
 }
 
+/* orange cast overlay */
+.img-wrap::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(255, 81, 2, 0.12);
+  pointer-events: none;
+  mix-blend-mode: multiply;
+  transition: background 0.4s ease;
+}
+
 .img-wrap:hover .site-img {
+  filter: grayscale(0%) contrast(1.04) saturate(1) brightness(1);
   transform: scale(1.04);
+}
+
+.img-wrap:hover::after {
+  background: rgba(255, 81, 2, 0.05);
 }
 
 /* no hover on hero slides */
@@ -270,6 +287,7 @@ img { max-width: 100%; display: block; }
 
 .hero-slide .img-wrap:hover .site-img {
   transform: none;
+  filter: grayscale(18%) contrast(1.08) saturate(0.82) brightness(0.97);
 }
 
 .hero-content {
@@ -1304,7 +1322,7 @@ img { max-width: 100%; display: block; }
   <!-- Slide 1: Future Innovation -->
   <div class="hero-slide active">
     <div class="img-wrap">
-      <img class="site-img" src="hero1.png" alt="Industrial innovation" loading="eager" style="transform:scaleX(-1);" />
+      <img class="site-img" src="hero1.png" alt="Industrial innovation" loading="eager" style="transform:scaleX(-1);filter:none;" />
     </div>
     <div class="hero-content">
       <div class="hero-eyebrow">Future · Innovation</div>
