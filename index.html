@@ -147,11 +147,31 @@ img { max-width: 100%; display: block; }
   position: sticky;
   top: 0;
   z-index: 99;
-  background: rgba(255,255,255,0.95);
+  background: transparent;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+  border-bottom: 1px solid transparent;
+  transition: background 0.35s ease, border-color 0.35s ease, backdrop-filter 0.35s ease;
+}
+
+/* Solid white state once the user scrolls down past the top of the hero */
+.site-nav.scrolled {
+  background: rgba(255,255,255,0.97);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
   border-bottom: 1px solid var(--border);
 }
+
+/* Links sit white over the hero, then switch to dark when nav is solid */
+.site-nav .nav-links a { color: #fff; }
+.site-nav .nav-links a:hover,
+.site-nav .nav-links a.active { color: var(--orange); }
+.site-nav.scrolled .nav-links a { color: var(--ink); }
+.site-nav.scrolled .nav-links a:hover,
+.site-nav.scrolled .nav-links a.active { color: var(--orange); }
+
+/* Pull the hero up so it sits behind the translucent nav */
+.hero-carousel { margin-top: -72px; }
 
 .nav-inner {
   max-width: var(--max);
@@ -321,6 +341,16 @@ img { max-width: 100%; display: block; }
   background: var(--orange);
 }
 
+/* Slide 1 only: enlarge the orange eyebrow text ("Future · Innovation") per feedback #1 */
+.hero-carousel .hero-slide:first-of-type .hero-eyebrow {
+  font-size: 18px;
+  letter-spacing: 0.16em;
+  font-weight: 600;
+}
+.hero-carousel .hero-slide:first-of-type .hero-eyebrow::before {
+  width: 40px;
+}
+
 .hero-title {
   font-family: var(--cond);
   font-size: clamp(60px, 9vw, 130px);
@@ -485,42 +515,53 @@ img { max-width: 100%; display: block; }
 /* ======================================== */
 
 .stats-band {
+  position: relative;
   background: var(--ink);
   padding: 0;
   display: grid;
   grid-template-columns: repeat(4, 1fr);
 }
 
-.stat-cell {
-  padding: 40px 36px;
-  border-right: 1px solid rgba(255,255,255,0.08);
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
+/* Soft light pool so the numbers pop off the dark band */
+.stats-band::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse 70% 120% at 50% 38%, rgba(255,255,255,0.10), rgba(255,255,255,0) 70%);
+  pointer-events: none;
 }
 
-.stat-cell:last-child { border-right: none; }
+.stat-cell {
+  position: relative;
+  padding: 56px 36px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 8px;
+}
 
 .stat-cell .num {
   font-family: var(--cond);
-  font-size: 56px;
+  font-size: 80px;
   font-weight: 800;
   line-height: 1;
   color: var(--orange);
   letter-spacing: -0.02em;
+  text-shadow: 0 6px 28px rgba(0,0,0,0.45);
 }
 
 .stat-cell .label {
   font-family: var(--mono);
-  font-size: 11px;
+  font-size: 12px;
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: rgba(255,255,255,0.6);
+  color: #ffffff;
 }
 
 .stat-cell .sub {
   font-size: 13px;
-  color: rgba(255,255,255,0.4);
+  color: rgba(255,255,255,0.78);
   margin-top: 2px;
 }
 
@@ -1322,7 +1363,7 @@ img { max-width: 100%; display: block; }
   <!-- Slide 1: Future Innovation -->
   <div class="hero-slide active">
     <div class="img-wrap">
-      <img class="site-img" src="hero1.png" alt="Industrial innovation" loading="eager" style="transform:scaleX(-1);filter:none;" />
+      <img class="site-img" src="hero1.jpg" alt="Container ship at sea" loading="eager" style="transform:scaleX(-1);filter:none;" />
     </div>
     <div class="hero-content">
       <div class="hero-eyebrow">Future · Innovation</div>
@@ -1353,7 +1394,7 @@ img { max-width: 100%; display: block; }
   <!-- Slide 3: Industry Expertise -->
   <div class="hero-slide">
     <div class="img-wrap">
-      <img class="site-img" src="hero3.jpeg" alt="Global logistics" loading="lazy" />
+      <img class="site-img" src="hero3.jpeg" alt="Global logistics" loading="lazy" style="transform:scaleX(-1);" />
     </div>
     <div class="hero-content">
       <div class="hero-eyebrow">Industry · Expertise</div>
@@ -1669,6 +1710,15 @@ const obs = new IntersectionObserver(entries => {
   entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
 }, { threshold: 0.1, rootMargin: '0px 0px -60px 0px' });
 document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+
+// Nav: translucent over hero at the top, solid white once scrolled down
+(function(){
+  const nav = document.querySelector('.site-nav');
+  if (!nav) return;
+  const onScroll = () => nav.classList.toggle('scrolled', window.scrollY > 60);
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
+})();
 </script>
 
 </body>
