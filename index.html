@@ -301,7 +301,9 @@ img { max-width: 100%; display: block; }
 }
 
 .hero-slide .img-wrap::after {
-  background: rgba(10,10,10,0.45);
+  /* Hero background filter commented out per 0630 feedback (remove filter on hero backgrounds). Restore by uncommenting the line below and removing "background: transparent;". */
+  /* background: rgba(10,10,10,0.45); */
+  background: transparent;
   mix-blend-mode: normal;
 }
 
@@ -516,7 +518,7 @@ img { max-width: 100%; display: block; }
 
 .stats-band {
   position: relative;
-  background: var(--ink);
+  background: linear-gradient(rgba(10,10,10,0.55), rgba(10,10,10,0.55)), url("energy.jpeg") center / cover no-repeat;
   padding: 0;
   display: grid;
   grid-template-columns: repeat(4, 1fr);
@@ -723,7 +725,7 @@ img { max-width: 100%; display: block; }
   grid-template-columns: 1fr 1.4fr;
   gap: 80px;
   margin-bottom: 64px;
-  align-items: start;
+  align-items: center;
 }
 
 .services-overview-header .intro-text {
@@ -1379,11 +1381,11 @@ img { max-width: 100%; display: block; }
   <!-- Slide 2: Connectivity Growth -->
   <div class="hero-slide">
     <div class="img-wrap">
-      <img class="site-img" src="hero2.jpeg" alt="Business connectivity" loading="lazy" />
+      <img class="site-img" src="hero2.jpeg" alt="Business connectivity" loading="lazy" style="filter:none;" />
     </div>
     <div class="hero-content">
       <div class="hero-eyebrow">Connectivity · Growth</div>
-      <h1 class="hero-title">Your Global<br/><span>Partner</span></h1>
+      <h1 class="hero-title">Upstream<br/><span>To Downstream</span></h1>
       <p class="hero-sub">A diversified global supplier linking 26+ countries, 1,000+ clients and 100+ workforce under one single platform.</p>
       <div class="hero-actions">
         <a href="contact.html" class="btn-orange">Start a Conversation &rarr;</a>
@@ -1394,7 +1396,7 @@ img { max-width: 100%; display: block; }
   <!-- Slide 3: Industry Expertise -->
   <div class="hero-slide">
     <div class="img-wrap">
-      <img class="site-img" src="hero3.jpeg" alt="Global logistics" loading="lazy" style="transform:scaleX(-1);" />
+      <img class="site-img" src="hero3.jpeg" alt="Global logistics" loading="lazy" style="transform:scaleX(-1);filter:none;" />
     </div>
     <div class="hero-content">
       <div class="hero-eyebrow">Industry · Expertise</div>
@@ -1409,7 +1411,7 @@ img { max-width: 100%; display: block; }
   <!-- Slide 4: Raw Material Solution -->
   <div class="hero-slide">
     <div class="img-wrap">
-      <img class="site-img" src="hero4.jpeg" alt="Industrial plant" loading="lazy" />
+      <img class="site-img" src="HOME%20PAGE%20-%20UPSTREAM%20TO%20DOWNSTREAM.jpeg" alt="Industrial plant" loading="lazy" style="filter:none;" />
     </div>
     <div class="hero-content">
       <div class="hero-eyebrow">Raw Material · Solution</div>
@@ -1446,7 +1448,7 @@ img { max-width: 100%; display: block; }
       </div>
     </div>
     <div class="img-col img-wrap reveal d2">
-      <img class="site-img" src="air-4.jpg" alt="Global cargo shipping" />
+      <img class="site-img" src="HOME%20PAGE%20-%20ONE%20STOP%20SUPPLY%20CHAIN.jpeg" alt="Global cargo shipping" />
     </div>
   </div>
 </section>
@@ -1534,7 +1536,7 @@ img { max-width: 100%; display: block; }
       </a>
       <a class="industry-card reveal" href="industries.html">
         <div class="img-wrap">
-          <img class="site-img" src="composites.jpeg" alt="Composites" />
+          <img class="site-img" src="SERVICES%20-%20COMPOSITES.jpg" alt="Composites" />
         </div>
         <div class="card-content">
           <div class="card-num">04</div>
@@ -1547,7 +1549,7 @@ img { max-width: 100%; display: block; }
       </a>
       <a class="industry-card reveal d1" href="industries.html">
         <div class="img-wrap">
-          <img class="site-img" src="projects.jpeg" alt="Projects" />
+          <img class="site-img" src="SERVICES%20-%20PROJECTS.jpeg" alt="Projects" />
         </div>
         <div class="card-content">
           <div class="card-num">05</div>
@@ -1560,7 +1562,7 @@ img { max-width: 100%; display: block; }
       </a>
       <a class="industry-card reveal d2" href="industries.html">
         <div class="img-wrap">
-          <img class="site-img" src="energy.jpeg" alt="Energy" />
+          <img class="site-img" src="HOME%20PAGE%20-%20ENERGY.jpg" alt="Energy" style="transform:scaleY(-1);" />
         </div>
         <div class="card-content">
           <div class="card-num">06</div>
