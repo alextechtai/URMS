@@ -518,19 +518,33 @@ img { max-width: 100%; display: block; }
 
 .stats-band {
   position: relative;
-  background: linear-gradient(rgba(10,10,10,0.55), rgba(10,10,10,0.55)), url("energy.jpeg") center / cover no-repeat;
+  background:
+    radial-gradient(ellipse 90% 140% at 50% 0%, rgba(255,81,2,0.14), rgba(255,81,2,0) 60%),
+    linear-gradient(135deg, #1a1a1a 0%, #0f0f0f 55%, #0a0a0a 100%);
   padding: 0;
   display: grid;
   grid-template-columns: repeat(4, 1fr);
+  overflow: hidden;
 }
 
-/* Soft light pool so the numbers pop off the dark band */
+/* Subtle brand rule across the top edge */
 .stats-band::before {
   content: '';
   position: absolute;
-  inset: 0;
-  background: radial-gradient(ellipse 70% 120% at 50% 38%, rgba(255,255,255,0.10), rgba(255,255,255,0) 70%);
+  top: 0; left: 0; right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--orange), rgba(255,81,2,0));
   pointer-events: none;
+}
+
+/* Faint divider lines between cells */
+.stats-band .stat-cell:not(:last-child)::before {
+  content: '';
+  position: absolute;
+  top: 28%; bottom: 28%;
+  right: 0;
+  width: 1px;
+  background: rgba(255,255,255,0.08);
 }
 
 .stat-cell {
@@ -637,7 +651,7 @@ img { max-width: 100%; display: block; }
 .industry-card {
   position: relative;
   overflow: hidden;
-  aspect-ratio: 1/1;
+  aspect-ratio: 3/2;
   cursor: pointer;
   background: var(--ink);
   display: block;
@@ -649,8 +663,16 @@ img { max-width: 100%; display: block; }
 }
 
 .industry-card .img-wrap::after {
-  background: rgba(10,10,10,0.52);
+  background: linear-gradient(to top, rgba(10,10,10,0.88) 0%, rgba(10,10,10,0.30) 48%, rgba(10,10,10,0) 82%);
   mix-blend-mode: normal;
+}
+
+/* Lighter, cleaner image treatment for the six sector cards */
+.industry-card .site-img {
+  filter: contrast(1.03) saturate(1) brightness(1.02);
+}
+.industry-card .img-wrap:hover .site-img {
+  filter: contrast(1.02) saturate(1.04) brightness(1.05);
 }
 
 .industry-card .card-content {
@@ -1123,7 +1145,7 @@ img { max-width: 100%; display: block; }
   width: 600px; height: 600px;
   top: -200px; right: -100px;
   border-radius: 50%;
-  background: radial-gradient(circle, rgba(240,90,34,0.2) 0%, transparent 65%);
+  background: radial-gradient(circle, rgba(255,81,2,0.2) 0%, transparent 65%);
   pointer-events: none;
 }
 
@@ -1382,7 +1404,7 @@ img { max-width: 100%; display: block; }
   <!-- Slide 2: Connectivity Growth -->
   <div class="hero-slide">
     <div class="img-wrap">
-      <img class="site-img" src="hero2.jpeg" alt="Business connectivity" loading="lazy" style="filter:none;" />
+      <img class="site-img" src="hero2.jpeg" alt="Business connectivity" loading="lazy" style="filter:none;object-position:80% center;" />
     </div>
     <div class="hero-content">
       <div class="hero-eyebrow">Connectivity · Growth</div>
@@ -1397,7 +1419,7 @@ img { max-width: 100%; display: block; }
   <!-- Slide 3: Industry Expertise -->
   <div class="hero-slide">
     <div class="img-wrap">
-      <img class="site-img" src="hero3.jpeg" alt="Global logistics" loading="lazy" style="transform:scaleX(-1);filter:none;" />
+      <img class="site-img" src="hero3.jpeg" alt="Global logistics" loading="lazy" style="transform:scaleX(-1);filter:none;object-position:center 38%;" />
     </div>
     <div class="hero-content">
       <div class="hero-eyebrow">Industry · Expertise</div>
@@ -1412,7 +1434,7 @@ img { max-width: 100%; display: block; }
   <!-- Slide 4: Raw Material Solution -->
   <div class="hero-slide">
     <div class="img-wrap">
-      <img class="site-img" src="HOME%20PAGE%20-%20UPSTREAM%20TO%20DOWNSTREAM.jpeg" alt="Industrial plant" loading="lazy" style="filter:none;" />
+      <img class="site-img" src="HOME%20PAGE%20-%20UPSTREAM%20TO%20DOWNSTREAM.jpeg" alt="Industrial plant" loading="lazy" style="filter:none;object-position:center 22%;" />
     </div>
     <div class="hero-content">
       <div class="hero-eyebrow">Raw Material · Solution</div>
@@ -1503,7 +1525,7 @@ img { max-width: 100%; display: block; }
         <div class="card-content">
           <div class="card-num">01</div>
           <div class="card-bottom">
-            <h3>Petro<br/>chemicals</h3>
+            <h3>Petrochemicals</h3>
             <div class="orange-underline"></div>
             <p>Naphtha, olefins, aromatics and key intermediate chemicals.</p>
           </div>
@@ -1563,7 +1585,7 @@ img { max-width: 100%; display: block; }
       </a>
       <a class="industry-card reveal d2" href="industries.html">
         <div class="img-wrap">
-          <img class="site-img" src="HOME%20PAGE%20-%20ENERGY.jpg" alt="Energy" style="transform:scaleY(-1);" />
+          <img class="site-img" src="HOME%20PAGE%20-%20ENERGY.jpg" alt="Energy" />
         </div>
         <div class="card-content">
           <div class="card-num">06</div>

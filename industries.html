@@ -871,6 +871,14 @@ img { max-width: 100%; display: block; }
   width: 100%;
   height: 100%;
 }
+/* Warm orange-yellow cast for the petrochemicals image */
+.petro-warm::after {
+  background: linear-gradient(135deg, rgba(255,140,20,0.28), rgba(255,81,2,0.20)) !important;
+  mix-blend-mode: multiply;
+}
+.petro-warm:hover .site-img {
+  filter: sepia(0.30) saturate(1.45) hue-rotate(-12deg) brightness(1.05) contrast(1.02) !important;
+}
 .industry-detail-row {
   align-items: stretch;
 }
@@ -1096,7 +1104,7 @@ img { max-width: 100%; display: block; }
   width: 600px; height: 600px;
   top: -200px; right: -100px;
   border-radius: 50%;
-  background: radial-gradient(circle, rgba(240,90,34,0.2) 0%, transparent 65%);
+  background: radial-gradient(circle, rgba(255,81,2,0.2) 0%, transparent 65%);
   pointer-events: none;
 }
 
@@ -1360,12 +1368,12 @@ img { max-width: 100%; display: block; }
 
   <!-- 01: Petrochemicals -->
   <div class="industry-detail-row" id="petrochemicals">
-    <div class="industry-detail-img img-wrap reveal">
-      <img class="site-img" src="petro.jpg" alt="Petrochemicals" />
+    <div class="industry-detail-img img-wrap reveal petro-warm">
+      <img class="site-img" src="petro.jpg" alt="Petrochemicals" style="filter:sepia(0.38) saturate(1.5) hue-rotate(-12deg) brightness(1.03) contrast(1.02);" />
     </div>
     <div class="industry-detail-text reveal d1">
       <div class="ind-num">Industry 01</div>
-      <h2>Petro<br/>chemicals</h2>
+      <h2>Petrochemicals</h2>
       <div class="orange-rule"></div>
       <p>Naphtha, olefins, aromatics and key intermediate chemicals sourced from refineries and cracking operations worldwide. URMS maintains strong relationships with producers across Asia, the Middle East and Europe, ensuring competitive pricing and reliable supply for industrial buyers in every market.</p>
       <p>Our petrochemical sourcing covers the full upstream to downstream chain, from feedstock procurement through to finished intermediate chemicals for industrial processing.</p>
